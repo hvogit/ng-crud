@@ -1,11 +1,38 @@
 'use strict';
 
-/* Controllers */
+angular.module('myApp.controllers', [])
+  .controller('ListCtrl', ['$scope', 'UserService',
+    function($scope, UserService) {
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
+      $scope.users = UserService.query();
 
-  }])
-  .controller('MyCtrl2', [function() {
+      $scope.clear = function() {
+        UserService.clear();
+      };
 
-  }]);
+    }
+  ])
+  .controller('EditCtrl', ['$scope', '$location', 'UserService', '$routeParams',
+    function($scope, $location, UserService, $routeParams) {
+
+      var id = $routeParams.id;
+
+      if (id) {
+        $scope.user = UserService.get({id: id});
+      } else {
+        $scope.user = new UserService();
+      }
+
+      $scope.save = function (){
+        $scope.user.$save(function(){
+          $location.path('/');
+        });
+      };
+
+      $scope.delete= function() {
+        $scope.user.$delete(function(){
+          $location.path('/');
+        });
+      };
+    }
+  ]);

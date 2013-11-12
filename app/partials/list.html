@@ -1,0 +1,24 @@
+<h1>Users List</h1>
+<table>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>score</th>
+    <th></th>
+  </tr>
+
+  <tr ng-repeat="user in users">
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.score}}</td>
+    <td>
+      <a class="button" href="#/edit/{{user.id}}">edit</a>
+    </td>
+  </tr>
+</table>
+
+<div class="buttons">
+  <a href="#/new" class="button new">new</a>
+  <a href="#" class="button clear warn" ng-click="clear()">clear</a>
+</div>
+

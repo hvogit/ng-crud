@@ -1,0 +1,22 @@
+<!-- used for both create and edit -->
+<h1>{{user.id ? 'Edit' : 'Create'}} User</h1>
+
+<form ng-model="user" class="user-detail-form">
+  <label>Name</label>
+  <input type="text" ng-model="user.name"/>
+  <span class="error"></span>
+  <br>
+  <label>Score</label>
+  <input type="text" ng-model="user.score"/>
+  <span class="error"></span>
+
+  <!-- don't need hidden field 'id' -->
+
+</form>
+
+<div class="buttons">
+  <a ng-click="save()" class="button save">ngSave</a>
+  <a href="#" class="button cancel">Cancel</a>
+
+  <a ng-click="delete()" ng-show="user.id" class="button delete warn">Delete</a>
+</div>

@@ -2,8 +2,20 @@
 
 /* Services */
 
+angular.module('myApp.services', [])
+  .value('version', '0.1')
+  .factory('UserService', ['$resource', function($resource) {
+    return $resource('/users/:id', { id: '@id'},
+      { // additional actions
+        clear: { method: 'DELETE', params: {id: 'ALL'} }
+      }
+    );
+  }]);
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+
+
+
+
+
+
+
